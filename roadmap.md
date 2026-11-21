@@ -21,3 +21,4 @@
 - [ ] Home: whole page in the hero's dark stage look — hero's colour combo + hero-style background on every section
 - [ ] Other pages (About, Service, Appointment, Contact): stay light porcelain, but carry the hero's colour combo
 - [x] Inner pages: replace porcelain-white background with a darker neutral-grey gradient (white deepened with black) that melts smoothly into the dark footer (reference video)
+- [x] Whole site restyled to match the user's "Flagship" video: black + sand sections with long soft fades, Cormorant serif + light sans, gold hairlines, blue italic accents, square edges (Home + inner pages, EN + AR, desktop + phone)

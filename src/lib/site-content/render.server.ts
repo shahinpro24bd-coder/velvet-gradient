@@ -62,6 +62,8 @@ export async function renderSitePage(request: Request, slug: string): Promise<Re
     `<noscript><link rel="stylesheet" href="${GOOGLE_FONTS_URL}" /></noscript>`,
     '<link rel="preload" href="/fonts/fa-solid-900.sub.woff2" as="font" type="font/woff2" crossorigin />',
     '<link rel="stylesheet" href="/perf.css" />',
+    // Site-wide look (black + sand, serif); last so it overrides lama.css/home.css.
+    '<link rel="stylesheet" href="/flagship.css" />',
     '<script src="/js/lib/perf.js" defer></script>',
   ];
   // SEO: self-referential hreflang alternates for every published language.
@@ -90,7 +92,7 @@ export async function renderSitePage(request: Request, slug: string): Promise<Re
 const LAZY_BG_RE = /style="background-image: url\('([^']+)'\);"/g;
 
 const GOOGLE_FONTS_URL =
-  "https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Readex+Pro:wght@300;400;500;600;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=Teko:wght@500;600&display=swap";
+  "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Raleway:wght@300;400;500&family=Sora:wght@300;400;500;600;700&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Readex+Pro:wght@300;400;500;600;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=Teko:wght@500;600&display=swap";
 
 /** slug|lang|version|path -> fully rendered HTML */
 const RENDER_CACHE = new Map<string, string>();
