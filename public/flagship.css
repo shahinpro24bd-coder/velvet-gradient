@@ -371,3 +371,70 @@ body:has(.s-cta) .lm-footer { background: var(--fs-black) !important; padding-to
 .a-id__top * { color: var(--ink) !important; }
 .lm-footer__langs, .lm-footer__langs a + a { border-color: rgba(184, 149, 94, 0.3) !important; }
 .lm-footer__langs a.is-active { background: var(--fs-gold) !important; color: var(--fs-black) !important; }
+
+/* =====================================================================
+   POLISH — shorter, cleaner fades; calmer details
+   ===================================================================== */
+:root {
+  --fs-fade: clamp(90px, 9vw, 140px);
+  --fs-sand: #cdbea8;
+  --fs-sand-hi: #d3c5b0;
+  --fs-sand-card: #ddd2c0;
+}
+/* fades now sit inside the normal top spacing instead of adding an empty band */
+.page-index :is(.x-treat, .x-ba, .x-visit, .x-about, .x-why, .x-high),
+.a-intro, .a-approach, .a-creds, .a-treat, .a-journey, .s-list, .s-cta, .p-section, .c-section {
+  padding-top: calc(var(--fs-fade) + clamp(36px, 4vw, 60px)) !important;
+}
+.lm-footer { padding-top: calc(var(--fs-fade) + clamp(40px, 4vw, 64px)) !important; }
+.x-sec { padding-bottom: clamp(72px, 7vw, 108px) !important; }
+
+/* body text: a touch heavier so it reads cleanly on sand and black */
+body { font-weight: 400; }
+p, li { line-height: 1.75; }
+
+/* about labels: no condensed font */
+.x-about { --ab-head: var(--fs-serif) !important; }
+.x-ab__eyebrow { font-family: var(--font-caps) !important; font-size: 0.74rem !important; letter-spacing: 0.34em !important; font-weight: 500 !important; }
+[dir="rtl"] .x-ab__eyebrow { letter-spacing: 0 !important; font-size: 0.95rem !important; }
+.x-ab__eyebrow-line { width: 44px !important; height: 1px !important; }
+.x-ab__stat { background: var(--fs-black) !important; border: 1px solid rgba(184, 149, 94, 0.45) !important; padding: 16px 24px !important; }
+.x-ab__stat b { font-family: var(--fs-serif) !important; font-weight: 300 !important; color: var(--fs-gold) !important; }
+.x-ab__stat-copy small { color: var(--fs-gold) !important; }
+.x-ab__stat-copy strong { font-family: var(--fs-serif) !important; color: var(--fs-ivory) !important; font-weight: 400 !important; }
+.x-ab__vertical { font-family: var(--font-caps) !important; color: var(--fs-gold-deep) !important; }
+
+/* hero: keep only a fine gold tooth outline */
+.x-dent { background: none !important; }
+.x-dent__fill, .x-dent__mesh, .x-dent__scan, .x-dent__shine, .x-dent__twinkle, .x-dent__echo, .x-dent__run { display: none !important; }
+.x-dent__line { stroke: var(--fs-gold) !important; stroke-width: 1.1 !important; opacity: 0.75; filter: none !important; }
+.x-stage__photo, .x-stage__photo img { filter: none !important; }
+.x-stage__dot { display: none !important; }
+
+/* treatment squares: warm black shading, gold marks */
+.s-card { background: var(--fs-black) !important; }
+.s-card::before {
+  background:
+    linear-gradient(var(--fs-gold), var(--fs-gold)) top left / 20px 1px no-repeat, linear-gradient(var(--fs-gold), var(--fs-gold)) top left / 1px 20px no-repeat,
+    linear-gradient(var(--fs-gold), var(--fs-gold)) top right / 20px 1px no-repeat, linear-gradient(var(--fs-gold), var(--fs-gold)) top right / 1px 20px no-repeat,
+    linear-gradient(var(--fs-gold), var(--fs-gold)) bottom left / 20px 1px no-repeat, linear-gradient(var(--fs-gold), var(--fs-gold)) bottom left / 1px 20px no-repeat,
+    linear-gradient(var(--fs-gold), var(--fs-gold)) bottom right / 20px 1px no-repeat, linear-gradient(var(--fs-gold), var(--fs-gold)) bottom right / 1px 20px no-repeat !important;
+  opacity: 0.7 !important;
+}
+.s-card__media::after { background: linear-gradient(180deg, rgba(11, 11, 10, 0) 0%, rgba(11, 11, 10, 0.12) 45%, rgba(11, 11, 10, 0.86) 100%) !important; }
+.s-card__media::before { background: linear-gradient(180deg, rgba(11, 11, 10, 0.25) 0%, rgba(11, 11, 10, 0.92) 72%) !important; }
+.s-card__num { font-family: var(--fs-serif) !important; font-weight: 300 !important; -webkit-text-stroke: 1px rgba(236, 231, 223, 0.6) !important; }
+.s-card:hover .s-card__num, .s-card:focus-within .s-card__num { color: transparent !important; -webkit-text-stroke-color: var(--fs-gold) !important; }
+.s-card__body h3 { font-weight: 400 !important; letter-spacing: 0 !important; color: var(--fs-ivory) !important; }
+.s-card__rule { height: 1px !important; background: var(--fs-gold) !important; }
+.s-more summary::after { background: transparent !important; border: 1px solid var(--fs-gold) !important; color: var(--fs-gold) !important; }
+.s-more[open] summary::after { background: var(--fs-gold) !important; color: var(--fs-black) !important; }
+.s-card:has(.s-more[open]) .s-card__body { background: rgba(11, 11, 10, 0.93) !important; backdrop-filter: none !important; }
+
+/* filter: flat gold marker, no shine */
+.x-filter { border: 1px solid rgba(184, 149, 94, 0.3) !important; background: transparent !important; }
+.x-filter__ind { background: var(--fs-gold) !important; }
+.x-filter__ind::after { display: none !important; }
+.x-filter__btn.is-active, .x-filter__btn.is-active span { color: var(--fs-black) !important; }
+.x-filter__btn.is-active b { background: rgba(11, 11, 10, 0.14) !important; color: var(--fs-black) !important; }
+.x-filter__btn b { background: transparent !important; color: var(--fs-gold) !important; }
