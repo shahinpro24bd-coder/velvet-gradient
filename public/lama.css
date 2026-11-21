@@ -1239,8 +1239,8 @@ html.js [data-reveal].is-in { opacity: 1; translate: none; filter: none; }
 .lm-top:hover::before { inset: -10px; }
 
 /* =====================================================================
-   WARM STONE — inner pages (About, Service, Appointment, Contact)
-   The former porcelain-white is deepened with black into a soft stone.
+   SOFT GRAPHITE — inner pages (About, Service, Appointment, Contact)
+   The former porcelain-white is deepened with black into a soft neutral grey.
    One long, very gentle gradient runs down the whole page; section bands
    are transparent so it never steps, and the page melts into the dark
    footer through a mask. Homepage (.page-index) is left untouched.
@@ -1248,38 +1248,38 @@ html.js [data-reveal].is-in { opacity: 1; translate: none; filter: none; }
    ===================================================================== */
 body:not(.page-index) {
   /* surfaces */
-  --stone-top: #cec5b8;
-  --stone-mid: #c4baac;
-  --stone-low: #b8ad9e;
-  --stone-end: #afa393;
+  --stone-top: #cbcbc9;
+  --stone-mid: #c0c0be;
+  --stone-low: #b4b4b2;
+  --stone-end: #aaaaa8;
   --bg: var(--stone-mid);
-  --paper: #e2dbd0;             /* cards: soft cream instead of pure white */
-  --ice: #cbc2b5;
-  --ice-2: #c2b8aa;
-  --sky-50: #d6cec2;
-  --sky-100: #cbc1b3;
-  --sky-200: #b6ab9b;
-  --grad-tint: linear-gradient(150deg, #d8d0c4 0%, #cec5b8 55%, #c6bcae 100%);
+  --paper: #e0e0de;             /* cards: soft pearl grey instead of pure white */
+  --ice: #c8c8c6;
+  --ice-2: #bfbfbd;
+  --sky-50: #d4d4d2;
+  --sky-100: #c9c9c7;
+  --sky-200: #b2b2b0;
+  --grad-tint: linear-gradient(150deg, #d5d5d3 0%, #cbcbc9 55%, #c3c3c1 100%);
   --mesh:
     radial-gradient(45% 55% at 86% 34%, rgba(14, 165, 181, 0.09), transparent 70%),
-    radial-gradient(50% 60% at 4% 80%, rgba(24, 19, 14, 0.07), transparent 72%),
+    radial-gradient(50% 60% at 4% 80%, rgba(18, 18, 18, 0.07), transparent 72%),
     transparent;
 
   /* text + accents deepened so they stay crisp on stone */
   --mist: #2f424e;
   --mist-2: #4a5d69;
-  --line: rgba(24, 19, 14, 0.12);
-  --line-2: rgba(24, 19, 14, 0.2);
+  --line: rgba(18, 18, 18, 0.12);
+  --line-2: rgba(18, 18, 18, 0.2);
   --teal: #08717e;
   --teal-600: #066672;
   --teal-700: #04545e;
   --grad-text: linear-gradient(100deg, #04505a 0%, #08717e 48%, #0b6f60 100%);
-  --hair: linear-gradient(140deg, rgba(8, 113, 126, 0.5), rgba(24, 19, 14, 0.12) 35%, rgba(255, 250, 240, 0) 60%, rgba(8, 113, 126, 0.3));
-  --shadow-card: 0 1px 2px rgba(24, 19, 14, 0.06), 0 18px 40px -22px rgba(24, 19, 14, 0.35);
-  --shadow-soft: 0 40px 80px -40px rgba(24, 19, 14, 0.45);
+  --hair: linear-gradient(140deg, rgba(8, 113, 126, 0.5), rgba(18, 18, 18, 0.12) 35%, rgba(255, 255, 255, 0) 60%, rgba(8, 113, 126, 0.3));
+  --shadow-card: 0 1px 2px rgba(18, 18, 18, 0.06), 0 18px 40px -22px rgba(18, 18, 18, 0.35);
+  --shadow-soft: 0 40px 80px -40px rgba(18, 18, 18, 0.45);
 
   background:
-    radial-gradient(120% 55% at 50% 0%, rgba(255, 250, 240, 0.14), transparent 62%),
+    radial-gradient(120% 55% at 50% 0%, rgba(255, 255, 255, 0.14), transparent 62%),
     linear-gradient(180deg, var(--stone-top) 0%, var(--stone-mid) 32%, var(--stone-low) 68%, var(--stone-end) 100%);
   background-color: var(--stone-mid);
 }
@@ -1298,8 +1298,8 @@ body:not(.page-index) .ph { border-bottom-color: transparent; }
 
 /* Soft glass bits that were near-white */
 body:not(.page-index) .btn-outline,
-body:not(.page-index) .btn-outline-light { background: rgba(226, 219, 208, 0.6); }
-body:not(.page-index) .lang-menu { background: rgba(226, 219, 208, 0.97); }
+body:not(.page-index) .btn-outline-light { background: rgba(224, 224, 222, 0.6); }
+body:not(.page-index) .lang-menu { background: rgba(224, 224, 222, 0.97); }
 
 /* Stone melts into the dark footer — no visible edge */
 body:not(.page-index) .lm-footer {
@@ -1308,7 +1308,7 @@ body:not(.page-index) .lm-footer {
   mask-image: linear-gradient(180deg, transparent 0, rgba(0, 0, 0, 0.35) 70px, #000 210px);
 }
 body:not(.page-index) .lm-footer::before { display: none; }
-body:not(.page-index) .lm-header__bar { background: rgba(226, 219, 208, 0.78); }
+body:not(.page-index) .lm-header__bar { background: rgba(224, 224, 222, 0.78); }
 body:not(.page-index) .lm-header.is-scrolled .lm-header__bar,
-body:not(.page-index) .lm-header.is-open .lm-header__bar { background: rgba(226, 219, 208, 0.95); }
-body:not(.page-index) .crumbs ol { background: rgba(226, 219, 208, 0.85); }
+body:not(.page-index) .lm-header.is-open .lm-header__bar { background: rgba(224, 224, 222, 0.95); }
+body:not(.page-index) .crumbs ol { background: rgba(224, 224, 222, 0.85); }
