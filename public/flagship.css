@@ -438,3 +438,112 @@ p, li { line-height: 1.75; }
 .x-filter__btn.is-active, .x-filter__btn.is-active span { color: var(--fs-black) !important; }
 .x-filter__btn.is-active b { background: rgba(11, 11, 10, 0.14) !important; color: var(--fs-black) !important; }
 .x-filter__btn b { background: transparent !important; color: var(--fs-gold) !important; }
+
+/* =====================================================================
+   REFINE — calmer, more legible, more even (user: colour, text, spacing, hero)
+   ===================================================================== */
+:root {
+  --fs-sand: #c9bba6;
+  --fs-sand-hi: #d3c7b5;
+  --fs-sand-card: #d9cfbf;
+  --fs-fade: clamp(130px, 13vw, 200px);
+  --fs-sec-y: clamp(64px, 6.4vw, 100px);
+  /* eased (smoothstep) blends so no band edge is visible */
+  --fs-to-black: linear-gradient(180deg,
+    var(--fs-sand) 0,
+    color-mix(in oklab, var(--fs-sand) 97%, var(--fs-black)) calc(var(--fs-fade) * 0.1),
+    color-mix(in oklab, var(--fs-sand) 90%, var(--fs-black)) calc(var(--fs-fade) * 0.2),
+    color-mix(in oklab, var(--fs-sand) 72%, var(--fs-black)) calc(var(--fs-fade) * 0.35),
+    color-mix(in oklab, var(--fs-sand) 50%, var(--fs-black)) calc(var(--fs-fade) * 0.5),
+    color-mix(in oklab, var(--fs-sand) 28%, var(--fs-black)) calc(var(--fs-fade) * 0.65),
+    color-mix(in oklab, var(--fs-sand) 10%, var(--fs-black)) calc(var(--fs-fade) * 0.8),
+    color-mix(in oklab, var(--fs-sand) 3%, var(--fs-black)) calc(var(--fs-fade) * 0.9),
+    var(--fs-black) var(--fs-fade));
+  --fs-to-sand: linear-gradient(180deg,
+    var(--fs-black) 0,
+    color-mix(in oklab, var(--fs-sand-hi) 3%, var(--fs-black)) calc(var(--fs-fade) * 0.1),
+    color-mix(in oklab, var(--fs-sand-hi) 10%, var(--fs-black)) calc(var(--fs-fade) * 0.2),
+    color-mix(in oklab, var(--fs-sand-hi) 28%, var(--fs-black)) calc(var(--fs-fade) * 0.35),
+    color-mix(in oklab, var(--fs-sand-hi) 50%, var(--fs-black)) calc(var(--fs-fade) * 0.5),
+    color-mix(in oklab, var(--fs-sand-hi) 72%, var(--fs-black)) calc(var(--fs-fade) * 0.65),
+    color-mix(in oklab, var(--fs-sand-hi) 90%, var(--fs-black)) calc(var(--fs-fade) * 0.8),
+    color-mix(in oklab, var(--fs-sand-hi) 97%, var(--fs-black)) calc(var(--fs-fade) * 0.9),
+    var(--fs-sand-hi) var(--fs-fade),
+    var(--fs-sand) 100%);
+}
+.page-index :is(.x-treat, .x-ba, .x-visit), :is(.a-approach, .a-treat, .s-cta) { background: var(--fs-to-black) !important; }
+.page-index :is(.x-about, .x-why, .x-high), :is(.a-intro, .a-creds, .a-journey, .s-list, .p-section, .c-section) { background: var(--fs-to-sand) !important; }
+body:not(:has(.s-cta)):not(.page-index) .lm-footer { background: var(--fs-to-black) !important; }
+.page-index .x-rev { background: linear-gradient(180deg, var(--fs-sand), color-mix(in oklab, var(--fs-sand) 94%, var(--fs-black))) !important; }
+
+/* Even rhythm: fade + one breath above, same breath below every band */
+.page-index :is(.x-treat, .x-ba, .x-visit, .x-about, .x-why, .x-high),
+.a-intro, .a-approach, .a-creds, .a-treat, .a-journey, .s-list, .s-cta, .p-section, .c-section {
+  padding-top: calc(var(--fs-fade) + clamp(24px, 2.6vw, 40px)) !important;
+}
+.x-sec, .a-intro, .a-approach, .a-creds, .a-treat, .a-journey, .s-list, .s-cta, .p-section, .c-section { padding-bottom: var(--fs-sec-y) !important; }
+.page-index :is(.x-train, .x-rev) { padding-top: var(--fs-sec-y) !important; }
+.page-index .x-cta { padding-top: var(--fs-sec-y) !important; padding-bottom: var(--fs-sec-y) !important; }
+body:not(.page-index):not(:has(.s-cta)) .lm-footer { padding-top: calc(var(--fs-fade) + clamp(32px, 3vw, 48px)) !important; }
+
+/* ---------- Text: larger, clearer, better contrast ---------- */
+html { font-size: 106.25%; }
+html:not([dir="rtl"]) body { font-size: 1rem; }
+body { font-weight: 400; -webkit-font-smoothing: antialiased; }
+p, li, dd { line-height: 1.8; }
+body, body.page-index, .ph, .page-index :is(.x-hero, .x-treat, .x-ba, .x-train, .x-visit, .x-cta), .a-approach, .a-treat, .s-cta, .lm-footer {
+  --mist: rgba(236, 231, 223, 0.74);
+  --mist-2: rgba(236, 231, 223, 0.56);
+  --x-fg-2: rgba(236, 231, 223, 0.84);
+  --ink-2: rgba(236, 231, 223, 0.86);
+}
+.page-index :is(.x-about, .x-why, .x-high, .x-rev), .a-intro, .a-creds, .a-journey, .s-list, .p-section, .c-section {
+  --fs-ink: #17140f;
+  --fs-ink-2: #2f2922;
+  --mist: #3a3229;
+  --mist-2: #54493c;
+  --ink: #17140f;
+  --ink-2: #2f2922;
+  --x-fg: #17140f;
+  --x-fg-2: #2f2922;
+}
+.x-hero__desc, .x-stage__stats dd { color: rgba(236, 231, 223, 0.8) !important; }
+html:not([dir="rtl"]) :is(.x-display, .ph h1, .x-train__h, .x-cta__title, .x-ab__title) { font-size: clamp(2.6rem, 4.6vw, 4.4rem) !important; line-height: 1.05 !important; }
+html:not([dir="rtl"]) :is(h3, h4, h5) { font-weight: 500 !important; letter-spacing: 0 !important; }
+.eyebrow, .x-stage__eyebrow, .x-chapter, .x-train__eyebrow, .x-ab__eyebrow { font-size: 0.74rem !important; }
+
+/* ---------- Header: full-width black bar (no floating box) ---------- */
+.lm-header { top: 0 !important; padding-inline: 0 !important; }
+.lm-header__bar { max-width: none !important; min-height: 84px !important; padding-inline: clamp(20px, 5vw, 80px) !important; }
+.lm-header.is-scrolled .lm-header__bar { min-height: 72px !important; }
+
+/* ---------- Home hero: one calm statement ---------- */
+.page-index .x-hero { padding-top: clamp(96px, 12vh, 120px) !important; padding-bottom: clamp(40px, 5vh, 64px) !important; }
+.page-index .x-stage__grid { min-height: clamp(580px, calc(100vh - 160px), 720px) !important; }
+@media (min-width: 1100px) { .page-index .x-stage__grid { grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr) minmax(0, 0.4fr) !important; } }
+.x-hero__cta > * { white-space: nowrap; }
+.x-stage__eyebrow { font-size: 0.7rem !important; letter-spacing: 0.3em !important; }
+html:not([dir="rtl"]) .x-hero__title { font-size: clamp(2.7rem, 4.5vw, 4.7rem) !important; line-height: 1.02 !important; letter-spacing: -0.01em !important; }
+.x-stage__eyebrow { margin-bottom: 4px !important; }
+.x-hero__rule { margin-block: clamp(26px, 3vw, 38px) !important; max-width: 420px !important; }
+.x-hero__desc { font-size: 1.06rem !important; max-width: 30em !important; }
+.x-hero__cta { margin-top: clamp(28px, 3vw, 40px) !important; gap: 14px !important; }
+.x-idcard { display: none !important; }
+.x-hero__doctor { -webkit-mask-image: linear-gradient(180deg, #000 72%, transparent 100%); mask-image: linear-gradient(180deg, #000 72%, transparent 100%); }
+.x-dent__line { opacity: 0.55 !important; stroke-width: 0.9 !important; }
+.x-stage__stats > div { padding-block: clamp(18px, 2vw, 26px) !important; }
+.x-stage__stats dt { font-size: clamp(2.2rem, 3vw, 3rem) !important; color: var(--fs-ivory) !important; }
+.x-stage__stats dt i { color: var(--fs-gold) !important; font-size: 0.5em !important; }
+.x-stage__stats dd { font-family: var(--font-caps) !important; text-transform: uppercase; letter-spacing: 0.24em !important; font-size: 0.66rem !important; color: var(--fs-gold) !important; margin-top: 6px !important; }
+[dir="rtl"] .x-stage__stats dd { letter-spacing: 0 !important; font-size: 0.85rem !important; }
+
+/* ---------- Less clutter in cards ---------- */
+.x-wc__ghost, .x-stage__photo::before, .x-stage__photo::after { display: none !important; }
+.x-wc { background: transparent !important; border: 1px solid var(--line-2) !important; }
+.x-wc.is-active { background: var(--fs-black) !important; border-color: rgba(184, 149, 94, 0.5) !important; }
+.x-ab__services { gap: 0 32px !important; }
+.x-ab__services a { background: transparent !important; border: 0 !important; border-bottom: 1px solid var(--line-2) !important; padding-inline: 0 !important; translate: none !important; }
+.x-ab__services a:hover { border-bottom-color: var(--fs-gold-deep) !important; }
+.x-ab__services a:hover .x-ab__svc-icon { background: transparent !important; color: var(--fs-ink) !important; }
+.x-ab__svc-icon { background: transparent !important; border: 0 !important; color: var(--fs-gold-deep) !important; }
+.x-ab__svc-name { font-family: var(--fs-serif) !important; font-size: 1.15rem !important; font-weight: 500 !important; color: var(--fs-ink) !important; }
