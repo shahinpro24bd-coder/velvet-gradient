@@ -1,0 +1,23 @@
+# Roadmap
+
+- [x] Replace dark design with a light, clean, modern, feature-rich design on every section of every page (EN + AR, desktop + phone)
+- [x] Remove the appointment/contact section right after the hero on Home
+- [x] Remove the reels section on Home (and its script + test)
+- [x] Homepage: completely new "Smile Atelier" editorial concept on every section, same colours, homepage only (EN + AR, desktop + phone)
+- [x] Homepage hero / about / treatments: 100% new professional design (booking bar, tabbed profile, filterable treatment cards), same colours
+- [x] Homepage hero: brand-new dark ink "stage" concept (copy · portrait on teal halo · stats)
+- [x] Homepage hero: replace portrait circle with animated tooth + dental lamp scene, animate all hero text/elements; About gets hero-grade motion with its original colours
+- [x] Homepage About: editorial redesign inspired by user reference (bracketed portrait, outline frame, vertical caption, stat + inset photo, service grid, two CTAs), same light colours
+- [x] Service page: 100% new square "Square Atelier" service cards (full-photo tiles, crop marks, hover reveal, Read More reading panel)
+- [x] Homepage: Featured Treatments grid rebuilt with the same square "Square Atelier" cards (filter + Arabic intact)
+- [x] Homepage: redesign "Smile transformation guide" (framed slider + Before/After switch + treatment notes), "Qualifications" (arched portrait + credential cards) and "Recognition" (feature banner + milestone grid); same colours, calm and uncluttered
+- [x] Homepage: second pass on "Smile transformation guide" and "Qualifications" — editorial look inspired by drarmanmolazadeh.com (centred italic kicker heads, offset-block framed photos with no tags on the pictures, quote-style notes, overlapping-icon credential cards)
+- [x] Homepage: redesign every section after Treatments (Why, Before/After, Qualifications, Recognition, Reviews, Clinic info, CTA) — "Atelier" editorial look inspired by drarmanmolazadeh.com, no tags on pictures, EN + AR, desktop + phone
+- [x] Homepage: rebuild every section after Why Choose Us (Before/After, Qualifications, Recognition, Reviews, Clinic info, CTA) in the hero / about / treatments / why design language — EN + AR, desktop + phone
+- [x] Footer: rebuilt on every page after the user's reference (brand column, two link columns, framed clinic card, bottom bar with EN | ع switch, square back-to-top)
+- [x] Fix laggy / stuttering scrolling on every page (phone + desktop)
+- [x] Speed up page loading on every page and section
+- [ ] Mobile scroll still feels laggy — keep chasing it until it feels smooth on a real phone
+- [ ] Home: whole page in the hero's dark stage look — hero's colour combo + hero-style background on every section
+- [ ] Other pages (About, Service, Appointment, Contact): stay light porcelain, but carry the hero's colour combo
+- [x] Inner pages: replace porcelain-white background with a darker warm-stone gradient that melts smoothly into the dark footer (reference video)

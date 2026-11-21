@@ -1,0 +1,10 @@
+/* Shared performance layer, loaded after every page stylesheet.
+   On phones and touch screens, frosted-glass blur behind cards is the most
+   expensive thing to redraw while scrolling; the cards are already almost
+   opaque, so they keep their look without it. */
+@media (hover: none), (max-width: 900px) {
+  *, *::before, *::after {
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+  }
+}

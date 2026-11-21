@@ -1,0 +1,51 @@
+[
+ {
+  "capability": "code (pages, admin, site content, styles, scripts)",
+  "source": "code archive",
+  "outcome": "migrate",
+  "status": "migrated",
+  "next_action": "none"
+ },
+ {
+  "capability": "self-hosted images, reels, fonts",
+  "source": "public/",
+  "outcome": "migrate",
+  "status": "migrated",
+  "next_action": "none"
+ },
+ {
+  "capability": "database / records",
+  "source": "none detected",
+  "outcome": "not applicable",
+  "status": "verified",
+  "next_action": "none"
+ },
+ {
+  "capability": "auth / users",
+  "source": "none detected (admin edits are browser-saved)",
+  "outcome": "not applicable",
+  "status": "verified",
+  "next_action": "none"
+ },
+ {
+  "capability": "secrets / external providers",
+  "source": "none detected",
+  "outcome": "not applicable",
+  "status": "verified",
+  "next_action": "none"
+ },
+ {
+  "capability": "Vercel deploy config",
+  "source": "vercel.json + vite.config.ts",
+  "outcome": "preserve",
+  "status": "migrated",
+  "next_action": "none"
+ },
+ {
+  "capability": "verification",
+  "source": "tests + preview",
+  "outcome": "verify",
+  "status": "verified",
+  "next_action": "none"
+ }
+]
