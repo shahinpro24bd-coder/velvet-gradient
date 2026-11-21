@@ -1239,162 +1239,76 @@ html.js [data-reveal].is-in { opacity: 1; translate: none; filter: none; }
 .lm-top:hover::before { inset: -10px; }
 
 /* =====================================================================
-   NOIR & TAUPE — inner pages (About, Service, Appointment, Contact)
-   Follows the user's reference video: velvet black framing, with the
-   old porcelain-white deepened into a warm taupe. Black and taupe meet
-   through long eased fades, so the change is barely noticeable.
+   SOFT GRAPHITE — inner pages (About, Service, Appointment, Contact)
+   The former porcelain-white is deepened with black into a soft neutral grey.
+   One long, very gentle gradient runs down the whole page; section bands
+   are transparent so it never steps, and the page melts into the dark
+   footer through a mask. Homepage (.page-index) is left untouched.
    All static paints: no blur, no fixed backgrounds (scroll stays smooth).
-   Homepage (.page-index) is untouched here.
    ===================================================================== */
 body:not(.page-index) {
-  --noir: #0b0b0a;
-  --noir-card: #161514;
-  --taupe-top: #cdc1ad;
-  --taupe-mid: #c7b9a3;
-  --taupe-low: #c0b19a;
-  /* long eased fade between black and taupe (never a hard edge) */
-  --fade-len: 260px;
-  --fade-in: linear-gradient(180deg,
-      rgba(11, 11, 10, 1) 0, rgba(11, 11, 10, 0.97) 26px, rgba(11, 11, 10, 0.9) 52px,
-      rgba(11, 11, 10, 0.78) 78px, rgba(11, 11, 10, 0.62) 104px, rgba(11, 11, 10, 0.45) 130px,
-      rgba(11, 11, 10, 0.29) 156px, rgba(11, 11, 10, 0.15) 182px, rgba(11, 11, 10, 0.06) 214px,
-      rgba(11, 11, 10, 0) var(--fade-len));
+  /* surfaces */
+  --stone-top: #cbcbc9;
+  --stone-mid: #c0c0be;
+  --stone-low: #b4b4b2;
+  --stone-end: #aaaaa8;
+  --bg: var(--stone-mid);
+  --paper: #e0e0de;             /* cards: soft pearl grey instead of pure white */
+  --ice: #c8c8c6;
+  --ice-2: #bfbfbd;
+  --sky-50: #d4d4d2;
+  --sky-100: #c9c9c7;
+  --sky-200: #b2b2b0;
+  --grad-tint: linear-gradient(150deg, #d5d5d3 0%, #cbcbc9 55%, #c3c3c1 100%);
+  --mesh:
+    radial-gradient(45% 55% at 86% 34%, rgba(14, 165, 181, 0.09), transparent 70%),
+    radial-gradient(50% 60% at 4% 80%, rgba(18, 18, 18, 0.07), transparent 72%),
+    transparent;
 
-  /* taupe surfaces */
-  --bg: var(--taupe-mid);
-  --paper: #ddd3c4;
-  --ice: #cbbfab;
-  --ice-2: #c2b49e;
-  --sky-50: #d5cab9;
-  --sky-100: #c9bca7;
-  --sky-200: #b3a48d;
-  --grad-tint: linear-gradient(150deg, #d6ccbc 0%, #cdc1ad 55%, #c5b8a2 100%);
-  --mesh: transparent;
-  --mist: #3b3a36;
-  --mist-2: #57544d;
-  --line: rgba(20, 18, 14, 0.12);
-  --line-2: rgba(20, 18, 14, 0.2);
+  /* text + accents deepened so they stay crisp on stone */
+  --mist: #2f424e;
+  --mist-2: #4a5d69;
+  --line: rgba(18, 18, 18, 0.12);
+  --line-2: rgba(18, 18, 18, 0.2);
   --teal: #08717e;
   --teal-600: #066672;
   --teal-700: #04545e;
   --grad-text: linear-gradient(100deg, #04505a 0%, #08717e 48%, #0b6f60 100%);
-  --hair: linear-gradient(140deg, rgba(8, 113, 126, 0.5), rgba(20, 18, 14, 0.12) 35%, rgba(255, 255, 255, 0) 60%, rgba(8, 113, 126, 0.3));
-  --shadow-card: 0 1px 2px rgba(20, 18, 14, 0.06), 0 18px 40px -22px rgba(20, 18, 14, 0.38);
-  --shadow-soft: 0 40px 80px -40px rgba(20, 18, 14, 0.5);
+  --hair: linear-gradient(140deg, rgba(8, 113, 126, 0.5), rgba(18, 18, 18, 0.12) 35%, rgba(255, 255, 255, 0) 60%, rgba(8, 113, 126, 0.3));
+  --shadow-card: 0 1px 2px rgba(18, 18, 18, 0.06), 0 18px 40px -22px rgba(18, 18, 18, 0.35);
+  --shadow-soft: 0 40px 80px -40px rgba(18, 18, 18, 0.45);
 
-  background: linear-gradient(180deg, var(--taupe-top) 0%, var(--taupe-mid) 45%, var(--taupe-low) 100%);
-  background-color: var(--taupe-mid);
+  background:
+    radial-gradient(120% 55% at 50% 0%, rgba(255, 255, 255, 0.14), transparent 62%),
+    linear-gradient(180deg, var(--stone-top) 0%, var(--stone-mid) 32%, var(--stone-low) 68%, var(--stone-end) 100%);
+  background-color: var(--stone-mid);
 }
 
-/* ---- Black zones: page head, About's credentials band ---- */
+/* Let the one page gradient flow through every band */
 body:not(.page-index) .ph,
-body:not(.page-index) .a-creds {
-  --ink: #f2eee7;
-  --ink-2: rgba(242, 238, 231, 0.86);
-  --mist: rgba(242, 238, 231, 0.64);
-  --mist-2: rgba(242, 238, 231, 0.44);
-  --line: rgba(255, 255, 255, 0.09);
-  --line-2: rgba(255, 255, 255, 0.17);
-  --paper: var(--noir-card);
-  --sky-50: rgba(255, 255, 255, 0.05);
-  --sky-100: rgba(255, 255, 255, 0.09);
-  --sky-200: rgba(255, 255, 255, 0.16);
-  --teal: #3fd0dc;
-  --teal-700: #5fdcea;
-  --grad-text: linear-gradient(100deg, #6fdfc2 0%, #3fd0dc 48%, #9af0dd 100%);
-  --grad-tint: linear-gradient(150deg, #1a1917 0%, #141312 55%, #191816 100%);
-  --hair: linear-gradient(140deg, rgba(63, 208, 220, 0.5), rgba(111, 223, 194, 0.2) 35%, rgba(255, 255, 255, 0) 60%, rgba(63, 208, 220, 0.3));
-  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.3), 0 18px 40px -22px rgba(0, 0, 0, 0.7);
-  --shadow-soft: 0 40px 80px -40px rgba(0, 0, 0, 0.8);
-  color: var(--ink);
-}
-body:not(.page-index) .ph {
-  background:
-    radial-gradient(50% 60% at 88% 30%, rgba(63, 208, 220, 0.08), transparent 70%),
-    var(--noir);
-  border-bottom: 0;
-}
-body:not(.page-index) .ph::before { opacity: 0.5; }
-body:not(.page-index) .ph h1 { background: linear-gradient(100deg, #f2eee7 30%, #d9cdb9 100%); -webkit-background-clip: text; background-clip: text; }
-body:not(.page-index) .ph__visual img { border-color: #1c1b19; background: #1c1b19 !important; box-shadow: 0 -10px 60px -24px rgba(63, 208, 220, 0.3); }
-body:not(.page-index) .crumbs ol { background: rgba(255, 255, 255, 0.06); }
-body:not(.page-index) .ph__sig { filter: brightness(0) invert(1); opacity: 0.05; }
-
-/* First band after the page head opens with the eased black → taupe fade */
-body:not(.page-index) .ph + section {
-  padding-top: calc(clamp(80px, 10vw, 132px) + 170px);
-  background: var(--fade-in) top / 100% var(--fade-len) no-repeat !important;
-}
-body:not(.page-index) .ph + .s-cta,
-body:not(.page-index) .ph + section:not(.section) { padding-top: 170px; }
-
-/* About: taupe → black → taupe credentials band, faded both ways */
-body:not(.page-index) .a-creds {
-  padding-block: calc(clamp(80px, 10vw, 132px) + 170px);
-  background:
-    linear-gradient(180deg,
-      rgba(11, 11, 10, 0) 0, rgba(11, 11, 10, 0.06) 46px, rgba(11, 11, 10, 0.15) 78px,
-      rgba(11, 11, 10, 0.29) 104px, rgba(11, 11, 10, 0.45) 130px, rgba(11, 11, 10, 0.62) 156px,
-      rgba(11, 11, 10, 0.78) 182px, rgba(11, 11, 10, 0.9) 208px, rgba(11, 11, 10, 0.97) 234px,
-      var(--noir) 260px, var(--noir) calc(100% - 260px),
-      rgba(11, 11, 10, 0.97) calc(100% - 234px), rgba(11, 11, 10, 0.9) calc(100% - 208px),
-      rgba(11, 11, 10, 0.78) calc(100% - 182px), rgba(11, 11, 10, 0.62) calc(100% - 156px),
-      rgba(11, 11, 10, 0.45) calc(100% - 130px), rgba(11, 11, 10, 0.29) calc(100% - 104px),
-      rgba(11, 11, 10, 0.15) calc(100% - 78px), rgba(11, 11, 10, 0.06) calc(100% - 46px),
-      rgba(11, 11, 10, 0) 100%);
-}
-
-/* Taupe bands stay transparent so the one page gradient flows through */
 body:not(.page-index) .a-intro,
-body:not(.page-index) .a-approach,
+body:not(.page-index) .a-creds,
 body:not(.page-index) .a-journey,
-body:not(.page-index) .c-section,
+body:not(.page-index) .a-approach,
+body:not(.page-index) .c-section { background: var(--mesh); }
 body:not(.page-index) .s-list,
 body:not(.page-index) .p-section,
 body:not(.page-index) .a-treat { background: transparent !important; }
+body:not(.page-index) .ph { border-bottom-color: transparent; }
 
-/* Teal buttons keep light lettering in every zone */
-body:not(.page-index) .btn-sky,
-body:not(.page-index) .btn-ink { color: #fff; }
+/* Soft glass bits that were near-white */
 body:not(.page-index) .btn-outline,
-body:not(.page-index) .btn-outline-light { background: rgba(221, 211, 196, 0.6); }
+body:not(.page-index) .btn-outline-light { background: rgba(224, 224, 222, 0.6); }
+body:not(.page-index) .lang-menu { background: rgba(224, 224, 222, 0.97); }
 
-/* ---- Header: black glass, like the homepage ---- */
-body:not(.page-index) .lm-header__bar {
-  color: #f2eee7;
-  background: rgba(11, 11, 10, 0.72);
-  border-color: rgba(255, 255, 255, 0.12);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), 0 20px 50px -28px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.05);
-}
-body:not(.page-index) .lm-header.is-scrolled .lm-header__bar { background: rgba(11, 11, 10, 0.92); box-shadow: 0 24px 50px -24px rgba(0, 0, 0, 0.85), 0 0 0 1px rgba(255, 255, 255, 0.08); }
-body:not(.page-index) .lm-header.is-open .lm-header__bar { background: rgba(11, 11, 10, 0.97); }
-body:not(.page-index) .lm-brand img { filter: brightness(0) invert(1); opacity: 0.95; }
-body:not(.page-index) .lm-brand__copy { border-inline-start-color: rgba(255, 255, 255, 0.17); }
-body:not(.page-index) .lm-brand__copy strong { color: #f2eee7; }
-body:not(.page-index) .lm-brand__copy small { color: #5fdcea; }
-body:not(.page-index) .lm-nav { background: rgba(255, 255, 255, 0.05); }
-body:not(.page-index) .lm-nav .nav-link { color: rgba(242, 238, 231, 0.84); }
-body:not(.page-index) .lm-nav .nav-link:hover { color: #f2eee7; background: rgba(255, 255, 255, 0.08); }
-body:not(.page-index) .lm-nav .nav-link.active { color: #fff; }
-body:not(.page-index) .lm-menu { border-top-color: rgba(255, 255, 255, 0.09); }
-body:not(.page-index) .lm-burger { background: rgba(255, 255, 255, 0.06); border-color: rgba(255, 255, 255, 0.17); box-shadow: none; }
-body:not(.page-index) .lm-burger span, body:not(.page-index) .lm-burger::before, body:not(.page-index) .lm-burger::after { background: #f2eee7; }
-body:not(.page-index) .lang-toggle { background: rgba(255, 255, 255, 0.06); border-color: rgba(255, 255, 255, 0.17); color: #f2eee7; }
-body:not(.page-index) .lang-menu { background: rgba(17, 17, 16, 0.97); border-color: rgba(255, 255, 255, 0.17); color: #f2eee7; box-shadow: 0 30px 60px -24px rgba(0, 0, 0, 0.8); }
-body:not(.page-index) .lang-menu a:hover, body:not(.page-index) .lang-menu a.active { background: rgba(255, 255, 255, 0.07); }
-body:not(.page-index) .lang-menu a.active { color: #5fdcea; }
-
-/* ---- Footer (every page): velvet black; inner pages fade into it ---- */
-.lm-footer {
-  background:
-    radial-gradient(45% 70% at 0% 0%, rgba(14, 165, 181, 0.1), transparent 70%),
-    radial-gradient(35% 60% at 100% 100%, rgba(111, 223, 194, 0.05), transparent 70%),
-    linear-gradient(180deg, #0f0f0e 0%, #0a0a0a 100%);
-}
+/* Stone melts into the dark footer — no visible edge */
 body:not(.page-index) .lm-footer {
-  padding-top: calc(clamp(64px, 6.5vw, 92px) + 170px);
-  -webkit-mask-image: linear-gradient(180deg, transparent 0, rgba(0, 0, 0, 0.06) 46px, rgba(0, 0, 0, 0.29) 104px, rgba(0, 0, 0, 0.62) 156px, rgba(0, 0, 0, 0.9) 208px, #000 260px);
-  mask-image: linear-gradient(180deg, transparent 0, rgba(0, 0, 0, 0.06) 46px, rgba(0, 0, 0, 0.29) 104px, rgba(0, 0, 0, 0.62) 156px, rgba(0, 0, 0, 0.9) 208px, #000 260px);
+  padding-top: calc(clamp(64px, 6.5vw, 92px) + 150px);
+  -webkit-mask-image: linear-gradient(180deg, transparent 0, rgba(0, 0, 0, 0.35) 70px, #000 210px);
+  mask-image: linear-gradient(180deg, transparent 0, rgba(0, 0, 0, 0.35) 70px, #000 210px);
 }
 body:not(.page-index) .lm-footer::before { display: none; }
-body:not(.page-index) .a-stat:not(.a-stat--sky) { background: rgba(221, 211, 196, 0.92); }
+body:not(.page-index) .lm-header__bar { background: rgba(224, 224, 222, 0.78); }
+body:not(.page-index) .lm-header.is-scrolled .lm-header__bar,
+body:not(.page-index) .lm-header.is-open .lm-header__bar { background: rgba(224, 224, 222, 0.95); }
+body:not(.page-index) .crumbs ol { background: rgba(224, 224, 222, 0.85); }
