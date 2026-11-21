@@ -547,3 +547,93 @@ html:not([dir="rtl"]) .x-hero__title { font-size: clamp(2.7rem, 4.5vw, 4.7rem) !
 .x-ab__services a:hover .x-ab__svc-icon { background: transparent !important; color: var(--fs-ink) !important; }
 .x-ab__svc-icon { background: transparent !important; border: 0 !important; color: var(--fs-gold-deep) !important; }
 .x-ab__svc-name { font-family: var(--fs-serif) !important; font-size: 1.15rem !important; font-weight: 500 !important; color: var(--fs-ink) !important; }
+
+/* =====================================================================
+   HERO v2 — editorial: big statement left, portrait in a gold frame right,
+   stats as one quiet row under the copy
+   ===================================================================== */
+.page-index .x-hero {
+  background:
+    radial-gradient(48% 62% at 74% 58%, rgba(199, 183, 161, 0.11), transparent 72%),
+    radial-gradient(40% 40% at 8% 18%, rgba(184, 149, 94, 0.05), transparent 70%),
+    var(--fs-black) !important;
+  padding-top: clamp(96px, 12vh, 124px) !important;
+  padding-bottom: 0 !important;
+}
+.page-index .x-stage { max-width: 1320px !important; }
+.page-index .x-dent { display: none !important; }
+
+/* Copy */
+.page-index .x-stage__copy { padding-block: 0 clamp(24px, 2.6vw, 34px) !important; }
+.x-stage__eyebrow { display: flex !important; align-items: center; gap: 16px !important; font-size: 0.7rem !important; letter-spacing: 0.34em !important; color: var(--fs-gold) !important; }
+.x-stage__eyebrow::before { content: ""; width: 48px; height: 1px; background: var(--fs-gold); flex: none; }
+[dir="rtl"] .x-stage__eyebrow { letter-spacing: 0 !important; font-size: 0.9rem !important; }
+html:not([dir="rtl"]) .x-hero__title { font-size: clamp(3rem, 4.9vw, 4.6rem) !important; line-height: 1 !important; margin-top: clamp(26px, 3vw, 38px) !important; }
+html:not([dir="rtl"]) .x-hero__title em { font-weight: 300 !important; }
+.x-hero__rule { max-width: 120px !important; margin-block: clamp(22px, 2.4vw, 30px) !important; background: var(--fs-gold) !important; opacity: 0.8; }
+.x-hero__desc { font-size: 1.08rem !important; line-height: 1.85 !important; max-width: 27em !important; color: rgba(236, 231, 223, 0.78) !important; }
+
+/* Portrait: doctor rises out of a dark gold-edged panel */
+.page-index .x-stage__photo { height: clamp(560px, 74vh, 700px) !important; isolation: isolate; }
+.page-index .x-stage__photo::before {
+  content: "" !important; display: block !important; opacity: 1 !important;
+  position: absolute; z-index: 0; inset: 22% 6% 0 6%;
+  background:
+    radial-gradient(70% 55% at 50% 30%, rgba(207, 192, 171, 0.2), transparent 75%),
+    linear-gradient(180deg, #1b1a17 0%, #12110f 60%, var(--fs-black) 100%) !important;
+  border: 1px solid rgba(184, 149, 94, 0.55) !important;
+  border-bottom: 0 !important;
+}
+.page-index .x-stage__photo::after {
+  content: "" !important; display: block !important; opacity: 1 !important;
+  position: absolute; z-index: 0; inset: calc(22% - 18px) calc(6% - 18px) 60px calc(6% + 18px);
+  border: 1px solid rgba(184, 149, 94, 0.22) !important;
+  background: none !important;
+  -webkit-mask-image: linear-gradient(180deg, #000 55%, transparent);
+  mask-image: linear-gradient(180deg, #000 55%, transparent);
+}
+[dir="rtl"] .page-index .x-stage__photo::after { inset: calc(22% - 18px) calc(6% + 18px) 60px calc(6% - 18px); }
+.page-index .x-hero__doctor {
+  z-index: 1; filter: none !important;
+  -webkit-mask-image: linear-gradient(180deg, #000 80%, transparent 100%) !important;
+  mask-image: linear-gradient(180deg, #000 80%, transparent 100%) !important;
+}
+
+/* Stats: one row with gold hairlines, under the copy */
+.page-index .x-stage__stats {
+  display: grid !important; grid-template-columns: repeat(3, minmax(0, 1fr)) !important; gap: 0 !important;
+  align-self: start !important; margin: 0 0 clamp(32px, 4vw, 48px) !important; padding: 0 !important;
+  border-top: 1px solid rgba(184, 149, 94, 0.35);
+}
+.page-index .x-stage__stats > div { border: 0 !important; padding: clamp(18px, 2vw, 24px) 0 0 !important; padding-inline-start: clamp(16px, 2vw, 28px) !important; border-inline-start: 1px solid rgba(184, 149, 94, 0.22) !important; }
+.page-index .x-stage__stats > div:first-child { border-inline-start: 0 !important; padding-inline-start: 0 !important; }
+.page-index .x-stage__stats dt { font-size: clamp(2rem, 2.6vw, 2.6rem) !important; }
+.page-index .x-stage__stats dd { font-size: 0.62rem !important; letter-spacing: 0.2em !important; line-height: 1.6 !important; }
+@media (min-width: 901px) { .page-index .x-stage__stats dd, .page-index .x-hero__title .x-line { white-space: nowrap; } }
+[dir="rtl"] .page-index .x-stage__stats dd { letter-spacing: 0 !important; font-size: 0.82rem !important; }
+[dir="rtl"] .page-index .x-stage__stats dt { justify-content: flex-end !important; }
+
+@media (min-width: 901px) {
+  .page-index .x-stage__grid {
+    grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr) !important;
+    grid-template-rows: 1fr auto !important;
+    column-gap: clamp(32px, 5vw, 88px) !important;
+    min-height: clamp(580px, calc(100vh - 130px), 740px) !important;
+    align-items: end !important;
+  }
+  .page-index .x-stage__copy { grid-column: 1; grid-row: 1; align-self: end; }
+  .page-index .x-stage__stats { grid-column: 1; grid-row: 2; }
+  .page-index .x-stage__photo { grid-column: 2; grid-row: 1 / span 2; align-self: end; }
+}
+@media (max-width: 900px) {
+  .page-index .x-hero { padding-top: 96px !important; }
+  .page-index .x-stage__photo { height: clamp(440px, 112vw, 580px) !important; margin-top: 12px; }
+  .page-index .x-stage__photo::before { inset: 20% 4% 0 4%; }
+  .page-index .x-stage__photo::after { inset: calc(20% - 12px) calc(4% - 12px) 60px calc(4% + 12px); }
+  .page-index .x-stage__stats { margin-top: 0 !important; }
+  .page-index .x-stage__stats dt { font-size: 1.8rem !important; }
+  .page-index .x-stage__stats dd { font-size: 0.56rem !important; letter-spacing: 0.14em !important; }
+  .page-index .x-stage__stats > div { padding-inline-start: 12px !important; }
+  html:not([dir="rtl"]) .x-hero__title { font-size: clamp(2.6rem, 11vw, 3.4rem) !important; }
+  .x-hero__cta > * { flex: 1 1 auto; justify-content: center; }
+}
