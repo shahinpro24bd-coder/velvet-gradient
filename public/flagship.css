@@ -547,3 +547,205 @@ html:not([dir="rtl"]) .x-hero__title { font-size: clamp(2.7rem, 4.5vw, 4.7rem) !
 .x-ab__services a:hover .x-ab__svc-icon { background: transparent !important; color: var(--fs-ink) !important; }
 .x-ab__svc-icon { background: transparent !important; border: 0 !important; color: var(--fs-gold-deep) !important; }
 .x-ab__svc-name { font-family: var(--fs-serif) !important; font-size: 1.15rem !important; font-weight: 500 !important; color: var(--fs-ink) !important; }
+
+/* =====================================================================
+   HERO MOTION — same hero layout, far more life. Gold dust, drifting
+   gold/blue glows, a pointer spotlight, letter-by-letter title, a blue
+   sheen on the italic line, a gold rule that draws itself with a glint,
+   the tooth outline drawn in gold with a comet running round it, an
+   orbit ring, a curtain reveal on the portrait, staggered stats and a
+   scroll cue. Loops use transform/opacity (no blur), so perf.js can
+   pause them while scrolling. Behaviour lives in js/hero-fx.js.
+   ===================================================================== */
+.page-index {
+  --fs-gold-hi: #ecd3a0;
+  --fs-blue-hi: #eef8fe;
+  --fx-ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --fx-curtain: cubic-bezier(0.7, 0, 0.2, 1);
+}
+.page-index .x-hero { position: relative; overflow: hidden; isolation: isolate; }
+.page-index .x-hero .x-stage { position: relative; overflow: visible !important; }
+.x-fx-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* --- atmosphere: gold grid, glows, dust, light sweep, spotlight --- */
+.page-index .x-hero .x-stage__lines {
+  display: block !important; inset: -96px !important; z-index: -2 !important;
+  background-image: linear-gradient(rgba(184, 149, 94, 0.065) 1px, transparent 1px), linear-gradient(90deg, rgba(184, 149, 94, 0.065) 1px, transparent 1px) !important;
+  background-size: 96px 96px !important;
+  -webkit-mask-image: radial-gradient(60% 70% at 62% 45%, #000, transparent 80%) !important;
+  mask-image: radial-gradient(60% 70% at 62% 45%, #000, transparent 80%) !important;
+  animation: fx-grid 40s linear infinite !important;
+}
+@keyframes fx-grid { to { transform: translate3d(96px, 96px, 0); } }
+.page-index .x-hero .x-stage__aurora { display: block !important; z-index: -1 !important; opacity: 1 !important; translate: calc(var(--px, 0) * -40px) calc(var(--py, 0) * -30px); }
+.page-index .x-hero .x-stage__aurora--a { background: radial-gradient(closest-side, rgba(184, 149, 94, 0.2), rgba(184, 149, 94, 0.07) 55%, transparent) !important; animation: fx-drift-a 20s ease-in-out infinite !important; }
+.page-index .x-hero .x-stage__aurora--b { background: radial-gradient(closest-side, rgba(134, 196, 228, 0.13), rgba(134, 196, 228, 0.05) 55%, transparent) !important; animation: fx-drift-b 26s ease-in-out infinite !important; }
+.page-index .x-hero .x-stage__aurora--c { background: radial-gradient(closest-side, rgba(236, 211, 160, 0.14), rgba(236, 211, 160, 0.04) 55%, transparent) !important; animation: fx-drift-a 30s ease-in-out -9s infinite reverse !important; }
+@keyframes fx-drift-a { 50% { transform: translate3d(110px, 70px, 0) scale(1.18); } }
+@keyframes fx-drift-b { 50% { transform: translate3d(-130px, -60px, 0) scale(0.88); } }
+
+.page-index .x-hero .x-stage__sparks { display: block !important; z-index: 0 !important; }
+.page-index .x-hero .x-stage__sparks i {
+  border-radius: 50% !important;
+  background: radial-gradient(closest-side, var(--fs-gold-hi), rgba(184, 149, 94, 0.45) 60%, transparent) !important;
+  animation: fx-rise var(--dur, 11s) linear var(--t) infinite !important;
+}
+@keyframes fx-rise {
+  0% { opacity: 0; transform: translate3d(0, 0, 0) scale(0.6); }
+  12% { opacity: 0.95; }
+  55% { opacity: 0.6; transform: translate3d(calc(var(--dx, 18px) * 0.5), -380px, 0) scale(1); }
+  100% { opacity: 0; transform: translate3d(var(--dx, 18px), -760px, 0) scale(0.4); }
+}
+
+.x-fx-sweep {
+  position: absolute; inset: -20% auto -20% 0; width: 38%; z-index: 0; pointer-events: none;
+  background: linear-gradient(100deg, transparent, rgba(236, 211, 160, 0.07) 45%, rgba(236, 231, 223, 0.1) 50%, rgba(236, 211, 160, 0.07) 55%, transparent);
+  transform: translate3d(-120%, 0, 0) skewX(-14deg);
+  animation: fx-sweep 14s var(--fx-curtain) 0.4s infinite;
+}
+@keyframes fx-sweep { 0% { transform: translate3d(-120%, 0, 0) skewX(-14deg); } 22%, 100% { transform: translate3d(360%, 0, 0) skewX(-14deg); } }
+
+.x-fx-spot {
+  position: absolute; left: 0; top: 0; width: 680px; height: 680px; margin: -340px 0 0 -340px; z-index: -1; pointer-events: none;
+  border-radius: 50% !important;
+  background: radial-gradient(closest-side, rgba(184, 149, 94, 0.14), rgba(184, 149, 94, 0.05) 50%, transparent);
+  opacity: 0; transition: opacity 0.9s ease; will-change: transform;
+}
+.x-hero.is-lit .x-fx-spot { opacity: 1; }
+
+/* --- eyebrow: tracking settles in, gold dash draws before it --- */
+html:not([dir="rtl"]) .page-index .x-stage__eyebrow > span:last-child { display: inline-block; animation: fx-track 1.8s var(--fx-ease) 0.05s both; }
+@keyframes fx-track { from { letter-spacing: 0.85em; opacity: 0; } }
+.page-index .x-stage__eyebrow { position: relative; }
+.page-index .x-stage__eyebrow::before {
+  content: ""; display: inline-block; width: 34px; height: 1px; margin-inline-end: 14px; vertical-align: middle;
+  background: var(--fs-gold); transform-origin: 0 50%; animation: fx-dash 1s var(--fx-curtain) 0.1s both;
+}
+[dir="rtl"] .page-index .x-stage__eyebrow::before { transform-origin: 100% 50%; }
+@keyframes fx-dash { from { transform: scaleX(0); } }
+
+/* --- title: letters rise one by one; italic line carries a sheen --- */
+.x-fx-w { display: inline-block; white-space: nowrap; }
+html.js .page-index .x-split .x-line > .x-fx-chars { translate: none !important; }
+.x-fx-c {
+  display: inline-block; opacity: 0; transform-origin: 0 100%;
+  transform: translate3d(0, 0.62em, 0) rotate(9deg);
+  animation: fx-char 1s var(--fx-ease) calc(0.15s + var(--i) * 0.038s) forwards;
+  transition: translate 0.45s var(--fx-ease), color 0.45s ease;
+}
+@keyframes fx-char { to { opacity: 1; transform: none; } }
+.x-fx-c:hover { translate: 0 -0.06em; color: var(--fs-gold-hi); }
+html body.page-index .x-hero__title em {
+  padding-inline-end: 0.08em;
+  background: linear-gradient(100deg, var(--fs-blue) 0%, var(--fs-blue) 40%, var(--fs-blue-hi) 50%, var(--fs-blue) 60%, var(--fs-blue) 100%) !important;
+  background-size: 300% 100% !important; background-position: 100% 0;
+  -webkit-background-clip: text !important; background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  animation: fx-sheen 7s ease-in-out 2.2s infinite !important;
+}
+@keyframes fx-sheen { 0% { background-position: 100% 0; } 40%, 100% { background-position: 0% 0; } }
+
+/* --- gold rule draws itself, then a glint runs along it --- */
+.page-index .x-hero__rule { position: relative !important; overflow: visible !important; transform-origin: 0 50%; animation: fx-rule 1.5s var(--fx-curtain) 0.7s both; }
+[dir="rtl"] .page-index .x-hero__rule { scale: -1 1; }
+@keyframes fx-rule { from { transform: scaleX(0); } }
+.page-index .x-hero__rule::after {
+  display: block !important; content: ""; position: absolute; top: -1px; left: 0; width: 110px; height: 3px;
+  background: radial-gradient(closest-side, var(--fs-gold-hi), rgba(184, 149, 94, 0.5) 55%, transparent);
+  opacity: 0; animation: fx-glint 5s ease-in-out 2.4s infinite;
+}
+@keyframes fx-glint { 0% { transform: translate3d(-110px, 0, 0); opacity: 0; } 8% { opacity: 1; } 55% { transform: translate3d(360px, 0, 0); opacity: 0; } 100% { transform: translate3d(360px, 0, 0); opacity: 0; } }
+
+/* --- buttons: magnetic lean, gold shine, arrow nudge, WhatsApp ring --- */
+.page-index .x-hero__cta > a { transition: transform 0.5s var(--fx-ease), background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease !important; will-change: transform; }
+.page-index .x-hero .x-btn--shine { position: relative; overflow: hidden; isolation: isolate; }
+.page-index .x-hero .x-btn--shine::after {
+  display: block !important;
+  background: linear-gradient(110deg, transparent 35%, rgba(184, 149, 94, 0.38) 50%, transparent 65%) !important;
+  animation: fx-btn-sweep 5s var(--fx-ease) 2.6s infinite !important;
+}
+@keyframes fx-btn-sweep { 0% { translate: -130% 0; } 30%, 100% { translate: 130% 0; } }
+.page-index .x-hero .x-btn--primary .x-btn__icon i { display: inline-block; animation: fx-nudge 2.4s ease-in-out 3s infinite !important; }
+[dir="rtl"] .page-index .x-hero .x-btn--primary .x-btn__icon i { animation-name: fx-nudge-rtl !important; }
+@keyframes fx-nudge { 0%, 55%, 100% { transform: translateX(0); } 25% { transform: translateX(5px); } }
+@keyframes fx-nudge-rtl { 0%, 55%, 100% { transform: translateX(0); } 25% { transform: translateX(-5px); } }
+.page-index .x-hero .x-stage__wa { position: relative; }
+.page-index .x-hero .x-stage__wa::after {
+  content: ""; position: absolute; inset: -1px; border: 1px solid var(--fs-gold); pointer-events: none;
+  opacity: 0; animation: fx-ring 3.6s ease-out 3.2s infinite;
+}
+@keyframes fx-ring { 0% { opacity: 0.6; transform: scale(1); } 70%, 100% { opacity: 0; transform: scale(1.12, 1.35); } }
+.page-index .x-hero .x-stage__wa i { display: inline-block; animation: fx-wiggle 5s ease-in-out 3.4s infinite !important; }
+@keyframes fx-wiggle { 0%, 82%, 100% { transform: rotate(0); } 86% { transform: rotate(-14deg); } 90% { transform: rotate(12deg); } 94% { transform: rotate(-6deg); } }
+
+/* --- portrait: curtain reveal, depth on pointer --- */
+.page-index .x-hero__doctor { animation: fx-doc 1.9s var(--fx-curtain) 0.3s both !important; }
+@keyframes fx-doc { from { clip-path: inset(100% 0 0 0); translate: 0 46px; scale: 1.06; } to { clip-path: inset(0 0 0 0); } }
+.page-index .x-stage__photo { will-change: transform; }
+
+/* tooth outline in gold: drawn, then a comet circles it, echoes ripple out */
+.page-index .x-hero .x-dent { transform: translate3d(calc(var(--px, 0) * -22px), calc(var(--py, 0) * -14px), 0); transition: transform 0.2s linear; }
+.page-index .x-hero :is(.x-dent__run, .x-dent__echo, .x-dent__twinkle) { display: inline !important; }
+.page-index .x-hero .x-dent__line { opacity: 0.7 !important; stroke-width: 1.1 !important; }
+.page-index .x-hero .x-dent__run { stroke: var(--fs-gold-hi) !important; stroke-width: 2.6 !important; stroke-dasharray: 0.05 0.95 !important; animation: fx-run 6s linear 2.8s infinite !important; }
+@keyframes fx-run { 0% { stroke-dashoffset: 1; opacity: 1; } 100% { stroke-dashoffset: 0; opacity: 1; } }
+.page-index .x-hero .x-dent__echo { stroke: var(--fs-gold) !important; stroke-width: 0.8 !important; animation: fx-echo 5.4s var(--fx-ease) 2.6s infinite !important; }
+.page-index .x-hero .x-dent__echo--2 { animation-delay: 5.3s !important; }
+@keyframes fx-echo { 0% { opacity: 0.5; scale: 1; } 100% { opacity: 0; scale: 1.22; } }
+.page-index .x-hero .x-dent__twinkle { fill: var(--fs-gold-hi) !important; animation: fx-twinkle 3.6s ease-in-out calc(2.8s + var(--tw)) infinite !important; }
+@keyframes fx-twinkle { 0%, 100% { opacity: 0; scale: 0.4; rotate: 0deg; } 50% { opacity: 1; scale: 1.15; rotate: 45deg; } }
+.page-index .x-hero .x-dent__tooth { animation: x-tooth-in 1.6s var(--fx-ease) both, fx-float 8s ease-in-out 1.6s infinite !important; }
+@keyframes fx-float { 50% { translate: -50% -12px; } }
+
+/* orbit rings behind the portrait */
+.x-fx-orbit { position: absolute; left: 50%; top: 44%; width: min(112%, 600px); aspect-ratio: 1; z-index: 0; pointer-events: none; translate: -50% -50%; transform: translate3d(calc(var(--px, 0) * -34px), calc(var(--py, 0) * -22px), 0); animation: fx-orbit-in 1.8s var(--fx-ease) 0.6s both; }
+@keyframes fx-orbit-in { from { opacity: 0; scale: 0.7; } }
+.x-fx-orbit i { position: absolute; inset: 0; border: 1px dashed rgba(184, 149, 94, 0.22); border-radius: 50% !important; will-change: transform; animation: fx-spin 70s linear infinite; }
+.x-fx-orbit i:nth-child(2) { inset: 11%; border: 1px solid rgba(184, 149, 94, 0.1); animation-duration: 26s; animation-direction: reverse; }
+.x-fx-orbit i::after { content: ""; position: absolute; top: -4px; left: 50%; width: 7px; height: 7px; margin-left: -3.5px; border-radius: 50% !important; background: var(--fs-gold-hi); }
+.x-fx-orbit i:nth-child(1)::after { width: 5px; height: 5px; top: -3px; margin-left: -2.5px; background: var(--fs-blue); }
+@keyframes fx-spin { to { transform: rotate(360deg); } }
+
+/* --- stats: staggered rise, glint along each top line, gold star spin --- */
+.page-index .x-stage__stats > div { position: relative; }
+html.js .page-index .x-stage__stats[data-reveal] > div:nth-child(2) > * { transition-delay: 0.15s; }
+html.js .page-index .x-stage__stats[data-reveal] > div:nth-child(3) > * { transition-delay: 0.3s; }
+.page-index .x-stage__stats > div::after {
+  content: ""; position: absolute; top: -1px; left: 0; width: 60px; height: 2px; pointer-events: none;
+  background: linear-gradient(90deg, transparent, var(--fs-gold-hi), transparent);
+  opacity: 0; animation: fx-stat-glint 6s ease-in-out infinite;
+}
+.page-index .x-stage__stats > div:nth-child(1)::after { animation-delay: 3s; }
+.page-index .x-stage__stats > div:nth-child(2)::after { animation-delay: 3.6s; }
+.page-index .x-stage__stats > div:nth-child(3)::after { animation-delay: 4.2s; }
+@keyframes fx-stat-glint { 0% { transform: translateX(0); opacity: 0; } 6% { opacity: 1; } 30% { transform: translateX(150px); opacity: 0; } 100% { transform: translateX(150px); opacity: 0; } }
+.page-index .x-stage__stats dt { transition: color 0.4s ease, translate 0.4s var(--fx-ease); }
+.page-index .x-stage__stats > div:hover dt { color: var(--fs-gold-hi) !important; translate: 6px 0; }
+.page-index .x-hero .x-stage__stats dt i { display: inline-block; animation: fx-star 4s ease-in-out 2.5s infinite !important; }
+@keyframes fx-star { 0%, 100% { transform: scale(1) rotate(0); } 50% { transform: scale(1.25) rotate(72deg); } }
+
+/* --- scroll cue --- */
+.x-fx-cue { position: absolute; left: 50%; bottom: 14px; width: 1px; height: 54px; z-index: 2; overflow: hidden; pointer-events: none; background: linear-gradient(rgba(184, 149, 94, 0), rgba(184, 149, 94, 0.45)); animation: fx-cue-in 1s ease 2.4s both; opacity: calc(1 - var(--sp, 0) * 4); }
+.x-fx-cue i { position: absolute; left: -1px; top: 0; width: 3px; height: 16px; background: var(--fs-gold-hi); animation: fx-cue 2.2s cubic-bezier(0.6, 0, 0.4, 1) infinite; }
+@keyframes fx-cue-in { from { opacity: 0; } }
+@keyframes fx-cue { from { transform: translateY(-16px); } to { transform: translateY(54px); } }
+
+/* phones: keep the life, but lighter */
+@media (max-width: 700px) {
+  .page-index .x-hero .x-stage__sparks { display: block !important; }
+  .page-index .x-hero .x-stage__lines { animation: none !important; }
+  .page-index .x-hero .x-dent__tooth { animation: x-tooth-in 1.6s var(--fx-ease) both !important; }
+  .x-fx-sweep { width: 70%; }
+  .x-fx-cue { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-index .x-hero *, .page-index .x-hero *::before, .page-index .x-hero *::after { animation: none !important; }
+  .x-fx-c { opacity: 1 !important; transform: none !important; }
+  .page-index .x-hero .x-dent__line { stroke-dashoffset: 0 !important; }
+  .page-index .x-hero :is(.x-dent__run, .x-dent__echo, .x-dent__twinkle), .x-fx-sweep, .x-fx-cue, .page-index .x-hero .x-stage__sparks { display: none !important; }
+}
+.page-index .x-hero__rule { clip-path: inset(-3px 0 -3px 0); }
+.x-fx-cue { left: auto; inset-inline-start: max(24px, calc((100% - 1204px) / 2)); }
+/* keep the blue glow inside the hero so its edge never shows at the bottom */
+.page-index .x-hero .x-stage__aurora--b { bottom: 8% !important; right: 22% !important; width: 460px !important; height: 380px !important; }
